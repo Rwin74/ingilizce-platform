@@ -132,9 +132,9 @@ export default function TutorDashboardPage() {
                                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#78716c' }} />
                                 <YAxis axisLine={false} tickLine={false} tick={{ fill: '#78716c' }} />
                                 <Tooltip
-                                    cursor={{ fill: '#f5f5f4' }}
+                                    cursor={{ fill: '#f5f5f5' }}
                                     contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
-                                    formatter={(value: number) => [`₺${value}`, 'Kazanç']}
+                                    formatter={(value: any) => [`₺${value}`, 'Kazanç']}
                                 />
                                 <Bar dataKey="earnings" fill="#10b981" radius={[4, 4, 0, 0]} />
                             </BarChart>
