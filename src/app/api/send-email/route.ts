@@ -8,8 +8,8 @@ export async function POST(request: Request) {
     try {
         const { to, subject, html } = await request.json();
 
-        // API Key yoksa simüle et
-        if (!process.env.RESEND_API_KEY) {
+        // API Key yoksa veya resend başlatılamadıysa simüle et
+        if (!resend) {
             console.log('📧 [MOCK EMAIL] To:', to);
             console.log('Subject:', subject);
             console.log('HTML:', html); // Log content for debug
