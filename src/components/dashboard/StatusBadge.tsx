@@ -11,6 +11,7 @@ const statusConfig = {
     pending: { label: 'Beklemede', variant: 'outline' as const, className: 'border-amber-200 bg-amber-50 text-amber-800' },
     approved: { label: 'Onaylandı', variant: 'outline' as const, className: 'border-emerald-200 bg-emerald-50 text-emerald-800' },
     rejected: { label: 'Reddedildi', variant: 'outline' as const, className: 'border-red-200 bg-red-50 text-red-800' },
+    cancelled: { label: 'İptal Edildi', variant: 'outline' as const, className: 'border-stone-200 bg-stone-100 text-stone-500' },
     completed: { label: 'Tamamlandı', variant: 'outline' as const, className: 'border-stone-200 bg-stone-50 text-stone-700' },
 };
 
