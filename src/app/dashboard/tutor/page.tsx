@@ -53,8 +53,8 @@ export default function TutorDashboardPage() {
         <div className="space-y-8 animate-fade-in">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="font-playfair text-3xl font-bold text-stone-900">Hoş Geldin, {user?.full_name}</h1>
-                    <p className="text-stone-500 mt-1">İşte bu ayki performansın ve yaklaşan derslerin.</p>
+                    <h1 className="font-playfair text-3xl font-bold text-stone-900 dark:text-stone-100">Hoş Geldin, {user?.full_name}</h1>
+                    <p className="text-stone-500 dark:text-stone-400 mt-1">İşte bu ayki performansın ve yaklaşan derslerin.</p>
                 </div>
                 <Link href="/dashboard/tutor/availability">
                     <Button className="bg-stone-900 hover:bg-stone-800 text-white gap-2">
@@ -73,7 +73,7 @@ export default function TutorDashboardPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* UPCOMING BOOKINGS */}
-                <Card className="lg:col-span-2 border-stone-200/60 shadow-sm h-full">
+                <Card className="lg:col-span-2 border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50 shadow-sm h-full">
                     <CardHeader className="flex flex-row items-center justify-between">
                         <div>
                             <CardTitle className="text-lg">Yaklaşan Dersler</CardTitle>
@@ -85,25 +85,25 @@ export default function TutorDashboardPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         {upcomingBookings.length === 0 ? (
-                            <div className="text-center py-10 bg-stone-50 rounded-lg border border-dashed border-stone-200">
-                                <Calendar className="w-10 h-10 text-stone-300 mx-auto mb-3" />
-                                <p className="text-stone-500">Yaklaşan ders bulunmuyor.</p>
+                            <div className="text-center py-10 bg-stone-50 dark:bg-stone-900/50 rounded-lg border border-dashed border-stone-200 dark:border-stone-800">
+                                <Calendar className="w-10 h-10 text-stone-300 dark:text-stone-700 mx-auto mb-3" />
+                                <p className="text-stone-500 dark:text-stone-400">Yaklaşan ders bulunmuyor.</p>
                             </div>
                         ) : (
                             upcomingBookings.map((booking) => (
-                                <div key={booking.id} className="flex items-center justify-between p-4 rounded-xl hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-100">
+                                <div key={booking.id} className="flex items-center justify-between p-4 rounded-xl hover:bg-stone-50 dark:hover:bg-stone-900/50 transition-colors border border-transparent hover:border-stone-100 dark:hover:border-stone-800">
                                     <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-full bg-amber-100/50 flex items-center justify-center text-amber-700 font-bold text-sm border-2 border-white shadow-sm">
+                                        <div className="w-12 h-12 rounded-full bg-amber-100/50 flex items-center justify-center text-amber-700 font-bold text-sm border-2 border-white dark:border-stone-900 shadow-sm">
                                             {booking.start_time.substring(0, 5)}
                                         </div>
                                         <div>
-                                            <h4 className="font-semibold text-stone-900 flex items-center gap-2">
+                                            <h4 className="font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
                                                 {booking.student?.full_name}
-                                                <Badge variant="outline" className="text-xs font-normal bg-white border-stone-200 text-stone-500">
+                                                <Badge variant="outline" className="text-xs font-normal bg-white dark:bg-stone-950 border-stone-200 dark:border-stone-800 text-stone-500 dark:text-stone-400">
                                                     {new Date(booking.booking_date).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })}
                                                 </Badge>
                                             </h4>
-                                            <p className="text-sm text-stone-500 flex items-center gap-1 mt-0.5">
+                                            <p className="text-sm text-stone-500 dark:text-stone-400 flex items-center gap-1 mt-0.5">
                                                 <User className="w-3 h-3" /> {booking.student?.email}
                                             </p>
                                         </div>
@@ -120,9 +120,9 @@ export default function TutorDashboardPage() {
                 </Card>
 
                 {/* EARNINGS CHART */}
-                <Card className="border-stone-200/60 shadow-sm">
+                <Card className="border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50 shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-lg">Kazanç Özeti</CardTitle>
+                        <CardTitle className="text-lg text-stone-900 dark:text-stone-100">Kazanç Özeti</CardTitle>
                         <CardDescription>Son 6 aylık tahmini gelir.</CardDescription>
                     </CardHeader>
                     <CardContent className="h-[300px]">
@@ -148,12 +148,12 @@ export default function TutorDashboardPage() {
 
 function StatCard({ icon: Icon, label, value, color, subValue }: { icon: any, label: string, value: any, color: string, subValue?: string }) {
     return (
-        <Card className="border-stone-200/60 shadow-sm hover:shadow-md transition-shadow">
+        <Card className="border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="p-6 flex items-center justify-between">
                 <div>
-                    <p className="text-sm font-medium text-stone-500 mb-1">{label}</p>
+                    <p className="text-sm font-medium text-stone-500 dark:text-stone-400 mb-1">{label}</p>
                     <div className="flex items-baseline gap-1">
-                        <h3 className="text-2xl font-bold text-stone-900">{value}</h3>
+                        <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-100">{value}</h3>
                         {subValue && <span className="text-xs text-stone-400 font-medium">{subValue}</span>}
                     </div>
                 </div>

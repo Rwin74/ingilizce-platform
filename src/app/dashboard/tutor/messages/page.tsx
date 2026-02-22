@@ -47,10 +47,10 @@ export default function TutorMessagesPage() {
     if (selectedPartner && user) {
         return (
             <div className="space-y-4">
-                <button onClick={() => setSelectedPartner(null)} className="inline-flex items-center gap-1.5 text-sm text-stone-500 hover:text-stone-900 transition-colors">
+                <button onClick={() => setSelectedPartner(null)} className="inline-flex items-center gap-1.5 text-sm text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">
                     <ArrowLeft className="w-4 h-4" />Mesajlara Dön
                 </button>
-                <Card className="border-stone-200/60 overflow-hidden">
+                <Card className="border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50 overflow-hidden">
                     <ChatBox currentUserId={user.id} otherUser={selectedPartner} />
                 </Card>
             </div>
@@ -60,20 +60,20 @@ export default function TutorMessagesPage() {
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="font-playfair text-2xl lg:text-3xl font-bold text-stone-900">Mesajlar</h1>
-                <p className="text-stone-500 mt-1">Öğrencilerinizle iletişim kurun.</p>
+                <h1 className="font-playfair text-2xl lg:text-3xl font-bold text-stone-900 dark:text-stone-100">Mesajlar</h1>
+                <p className="text-stone-500 dark:text-stone-400 mt-1">Öğrencilerinizle iletişim kurun.</p>
             </div>
 
-            <Card className="border-stone-200/60">
+            <Card className="border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50">
                 <CardContent className="p-0">
                     {conversations.length === 0 ? (
                         <div className="text-center py-16">
-                            <MessageSquare className="w-12 h-12 mx-auto text-stone-300 mb-3" />
-                            <p className="text-stone-400">Henüz mesajınız yok.</p>
-                            <p className="text-xs text-stone-400 mt-1">Öğrencileriniz sizinle iletişim kurduğunda mesajlar burada görünecek.</p>
+                            <MessageSquare className="w-12 h-12 mx-auto text-stone-300 dark:text-stone-700 mb-3" />
+                            <p className="text-stone-400 dark:text-stone-500">Henüz mesajınız yok.</p>
+                            <p className="text-xs text-stone-400 dark:text-stone-500 mt-1">Öğrencileriniz sizinle iletişim kurduğunda mesajlar burada görünecek.</p>
                         </div>
                     ) : (
-                        <div className="divide-y divide-stone-100">
+                        <div className="divide-y divide-stone-100 dark:divide-stone-800/60">
                             {conversations.map((msg) => {
                                 const partner = getPartner(msg);
                                 if (!partner) return null;
@@ -84,18 +84,18 @@ export default function TutorMessagesPage() {
                                     <button
                                         key={msg.id}
                                         onClick={() => setSelectedPartner(partner)}
-                                        className={`w-full flex items-center gap-3 p-4 text-left hover:bg-stone-50 transition-colors ${isUnread ? 'bg-amber-50/50' : ''}`}
+                                        className={`w-full flex items-center gap-3 p-4 text-left hover:bg-stone-50 dark:hover:bg-stone-900/50 transition-colors ${isUnread ? 'bg-amber-50/50 dark:bg-amber-950/20' : ''}`}
                                     >
-                                        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center text-stone-600 text-sm font-bold shrink-0 overflow-hidden">
+                                        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-stone-200 to-stone-300 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center text-stone-600 dark:text-stone-400 text-sm font-bold shrink-0 overflow-hidden">
                                             {partner.avatar_url ? <img src={partner.avatar_url} alt={partner.full_name} className="w-full h-full object-cover" /> : initials}
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center justify-between">
-                                                <span className={`text-sm ${isUnread ? 'font-bold text-stone-900' : 'font-medium text-stone-700'}`}>{partner.full_name}</span>
-                                                <span className="text-[10px] text-stone-400 shrink-0">{timeAgo(msg.created_at)}</span>
+                                                <span className={`text-sm ${isUnread ? 'font-bold text-stone-900 dark:text-stone-100' : 'font-medium text-stone-700 dark:text-stone-300'}`}>{partner.full_name}</span>
+                                                <span className="text-[10px] text-stone-400 dark:text-stone-500 shrink-0">{timeAgo(msg.created_at)}</span>
                                             </div>
-                                            <p className={`text-xs truncate mt-0.5 ${isUnread ? 'text-stone-700 font-medium' : 'text-stone-400'}`}>
-                                                {msg.sender_id === user?.id && <span className="text-stone-400">Siz: </span>}
+                                            <p className={`text-xs truncate mt-0.5 ${isUnread ? 'text-stone-700 dark:text-stone-300 font-medium' : 'text-stone-400 dark:text-stone-500'}`}>
+                                                {msg.sender_id === user?.id && <span className="text-stone-400 dark:text-stone-500">Siz: </span>}
                                                 {msg.content}
                                             </p>
                                         </div>

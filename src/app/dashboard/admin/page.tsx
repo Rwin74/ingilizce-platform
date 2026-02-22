@@ -82,17 +82,17 @@ export default function AdminDashboardPage() {
     };
 
     if (loading) {
-        return <div className="p-8 text-center text-gray-500">Yükleniyor...</div>;
+        return <div className="p-8 text-center text-gray-500 dark:text-gray-400">Yükleniyor...</div>;
     }
 
     if (!user?.is_admin) {
-        return <div className="p-8 text-center text-red-500">Bu sayfaya erişim yetkiniz yok.</div>;
+        return <div className="p-8 text-center text-red-500 dark:text-red-400">Bu sayfaya erişim yetkiniz yok.</div>;
     }
 
     return (
         <div className="space-y-6">
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-                <ShieldCheck className="h-8 w-8 text-blue-600" />
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-stone-100 flex items-center gap-2">
+                <ShieldCheck className="h-8 w-8 text-blue-600 dark:text-blue-400" />
                 Admin Paneli
             </h1>
 
@@ -110,28 +110,28 @@ export default function AdminDashboardPage() {
                 {/* PENDING TUTORS TAB */}
                 <TabsContent value="pending" className="mt-6 space-y-4">
                     {pendingTutors.length === 0 ? (
-                        <div className="text-center py-12 bg-white rounded-lg border border-dashed text-gray-500">
+                        <div className="text-center py-12 bg-white dark:bg-stone-900/50 rounded-lg border border-dashed dark:border-stone-800 text-gray-500 dark:text-gray-400">
                             Onay bekleyen eğitmen başvurusu yok.
                         </div>
                     ) : (
                         pendingTutors.map((tutor) => (
-                            <Card key={tutor.id} className="overflow-hidden">
+                            <Card key={tutor.id} className="overflow-hidden border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50">
                                 <CardContent className="p-6">
                                     <div className="flex flex-col md:flex-row gap-6 items-start">
-                                        <Avatar className="h-20 w-20 border-2 border-gray-100">
+                                        <Avatar className="h-20 w-20 border-2 border-gray-100 dark:border-stone-800/60">
                                             <AvatarImage src={tutor.avatar_url || ''} />
                                             <AvatarFallback>{tutor.full_name[0]}</AvatarFallback>
                                         </Avatar>
 
                                         <div className="flex-1 space-y-2">
                                             <div className="flex items-center gap-2">
-                                                <h3 className="font-semibold text-lg">{tutor.full_name}</h3>
-                                                <Badge variant="outline" className="bg-orange-50 text-orange-600 border-orange-200">
+                                                <h3 className="font-semibold text-lg text-stone-900 dark:text-stone-100">{tutor.full_name}</h3>
+                                                <Badge variant="outline" className="bg-orange-50/50 dark:bg-orange-950/20 text-orange-600 dark:text-orange-400 border-orange-200 dark:border-orange-900/50">
                                                     Onay Bekliyor
                                                 </Badge>
                                             </div>
-                                            <p className="text-sm text-gray-500">{tutor.email}</p>
-                                            <p className="text-sm text-gray-600 mt-2 line-clamp-2">{tutor.bio || 'Biyografi yok.'}</p>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">{tutor.email}</p>
+                                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-2">{tutor.bio || 'Biyografi yok.'}</p>
 
                                             {tutor.cv_url && (
                                                 <div className="mt-4">
@@ -175,10 +175,10 @@ export default function AdminDashboardPage() {
                 {/* ALL USERS TAB */}
                 <TabsContent value="users" className="mt-6 space-y-6">
                     <div className="relative">
-                        <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400 dark:text-gray-500" />
                         <Input
                             placeholder="İsim ile ara..."
-                            className="pl-10"
+                            className="pl-10 dark:bg-stone-950/50 dark:border-stone-800/60 dark:text-stone-100 dark:placeholder:text-stone-500"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
@@ -187,13 +187,13 @@ export default function AdminDashboardPage() {
                     <div className="space-y-6">
                         {/* SUSPENDED USERS SECTION */}
                         {allUsers.filter(u => u.status === 'suspended').length > 0 && (
-                            <div className="bg-red-50 rounded-lg border border-red-200 overflow-hidden">
-                                <div className="bg-red-100 px-4 py-3 border-b border-red-200 flex items-center gap-2">
-                                    <AlertCircle className="w-5 h-5 text-red-600" />
-                                    <h3 className="font-bold text-red-800">Askıya Alınan Kullanıcılar</h3>
+                            <div className="bg-red-50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-900/50 overflow-hidden">
+                                <div className="bg-red-100 dark:bg-red-900/30 px-4 py-3 border-b border-red-200 dark:border-red-900/50 flex items-center gap-2">
+                                    <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
+                                    <h3 className="font-bold text-red-800 dark:text-red-400">Askıya Alınan Kullanıcılar</h3>
                                 </div>
                                 <table className="w-full text-sm text-left">
-                                    <thead className="text-red-800 border-b border-red-200 bg-red-50/50">
+                                    <thead className="text-red-800 dark:text-red-400 border-b border-red-200 dark:border-red-900/50 bg-red-50/50 dark:bg-red-950/30">
                                         <tr>
                                             <th className="p-4 font-medium">Kullanıcı</th>
                                             <th className="p-4 font-medium">Rol</th>
@@ -202,28 +202,28 @@ export default function AdminDashboardPage() {
                                             <th className="p-4 font-medium text-right">İşlem</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-red-200">
+                                    <tbody className="divide-y divide-red-200 dark:divide-red-900/30">
                                         {allUsers.filter(u => u.status === 'suspended').map((u) => (
-                                            <tr key={u.id} className="hover:bg-red-100/50">
+                                            <tr key={u.id} className="hover:bg-red-100/50 dark:hover:bg-red-900/20">
                                                 <td className="p-4 flex items-center gap-3">
-                                                    <Avatar className="h-8 w-8 border border-red-200">
+                                                    <Avatar className="h-8 w-8 border border-red-200 dark:border-red-900/50">
                                                         <AvatarImage src={u.avatar_url || ''} />
-                                                        <AvatarFallback className="bg-red-200 text-red-800">{u.full_name[0]}</AvatarFallback>
+                                                        <AvatarFallback className="bg-red-200 text-red-800 dark:bg-red-900 dark:text-red-200">{u.full_name[0]}</AvatarFallback>
                                                     </Avatar>
                                                     <div>
-                                                        <div className="font-medium text-red-900">{u.full_name}</div>
-                                                        <div className="text-red-700/70 text-xs">{u.email}</div>
+                                                        <div className="font-medium text-red-900 dark:text-red-300">{u.full_name}</div>
+                                                        <div className="text-red-700/70 dark:text-red-400/70 text-xs">{u.email}</div>
                                                     </div>
                                                 </td>
                                                 <td className="p-4">
-                                                    <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300">
+                                                    <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300 dark:bg-red-900/50 dark:text-red-300 dark:border-red-800/60">
                                                         {u.role === 'tutor' ? 'Eğitmen' : 'Öğrenci'}
                                                     </Badge>
                                                 </td>
                                                 <td className="p-4">
-                                                    <Badge variant="secondary" className="bg-red-200 text-red-800 hover:bg-red-300">Askıda</Badge>
+                                                    <Badge variant="secondary" className="bg-red-200 text-red-800 hover:bg-red-300 dark:bg-red-900/50 dark:text-red-200 dark:hover:bg-red-800/60">Askıda</Badge>
                                                 </td>
-                                                <td className="p-4 text-red-800">
+                                                <td className="p-4 text-red-800 dark:text-red-400">
                                                     {new Date(u.created_at).toLocaleDateString('tr-TR')}
                                                 </td>
                                                 <td className="p-4 text-right">
@@ -237,12 +237,12 @@ export default function AdminDashboardPage() {
                         )}
 
                         {/* ACTIVE USERS SECTION */}
-                        <div className="bg-white rounded-lg border overflow-hidden">
-                            <div className="bg-gray-50 px-4 py-3 border-b flex items-center justify-between">
-                                <h3 className="font-bold text-gray-700">Aktif Kullanıcılar</h3>
+                        <div className="bg-white dark:bg-stone-950/50 rounded-lg border border-stone-200/60 dark:border-stone-800/60 overflow-hidden">
+                            <div className="bg-gray-50 dark:bg-stone-900/50 px-4 py-3 border-b border-stone-200/60 dark:border-stone-800/60 flex items-center justify-between">
+                                <h3 className="font-bold text-gray-700 dark:text-gray-300">Aktif Kullanıcılar</h3>
                             </div>
                             <table className="w-full text-sm text-left">
-                                <thead className="bg-gray-50 text-gray-600 border-b">
+                                <thead className="bg-gray-50 dark:bg-stone-900/50 text-gray-600 dark:text-gray-400 border-b border-stone-200/60 dark:border-stone-800/60">
                                     <tr>
                                         <th className="p-4 font-medium">Kullanıcı</th>
                                         <th className="p-4 font-medium">Rol</th>
@@ -251,24 +251,24 @@ export default function AdminDashboardPage() {
                                         <th className="p-4 font-medium text-right">İşlem</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y">
+                                <tbody className="divide-y divide-stone-200/60 dark:divide-stone-800/60">
                                     {allUsers.filter(u => u.status !== 'suspended').filter(u => u.full_name?.toLowerCase().includes(search.toLowerCase()) || u.email?.toLowerCase().includes(search.toLowerCase())).length === 0 ? (
                                         <tr>
-                                            <td colSpan={5} className="p-8 text-center text-gray-400">
+                                            <td colSpan={5} className="p-8 text-center text-gray-400 dark:text-gray-500">
                                                 Kullanıcı bulunamadı.
                                             </td>
                                         </tr>
                                     ) : (
                                         allUsers.filter(u => u.status !== 'suspended').filter(u => u.full_name?.toLowerCase().includes(search.toLowerCase()) || u.email?.toLowerCase().includes(search.toLowerCase())).map((u) => (
-                                            <tr key={u.id} className="hover:bg-gray-50">
+                                            <tr key={u.id} className="hover:bg-gray-50 dark:hover:bg-stone-900/50">
                                                 <td className="p-4 flex items-center gap-3">
                                                     <Avatar className="h-8 w-8">
                                                         <AvatarImage src={u.avatar_url || ''} />
-                                                        <AvatarFallback>{u.full_name[0]}</AvatarFallback>
+                                                        <AvatarFallback className="dark:bg-stone-800">{u.full_name[0]}</AvatarFallback>
                                                     </Avatar>
                                                     <div>
-                                                        <div className="font-medium text-gray-900">{u.full_name}</div>
-                                                        <div className="text-gray-500 text-xs">{u.email}</div>
+                                                        <div className="font-medium text-gray-900 dark:text-gray-100">{u.full_name}</div>
+                                                        <div className="text-gray-500 dark:text-gray-400 text-xs">{u.email}</div>
                                                     </div>
                                                 </td>
                                                 <td className="p-4">
@@ -280,9 +280,9 @@ export default function AdminDashboardPage() {
                                                     <Badge
                                                         variant="outline"
                                                         className={
-                                                            u.status === 'approved' ? 'bg-green-50 text-green-700 border-green-200' :
-                                                                u.status === 'pending' ? 'bg-orange-50 text-orange-700 border-orange-200' :
-                                                                    'bg-red-50 text-red-700 border-red-200'
+                                                            u.status === 'approved' ? 'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-900/50' :
+                                                                u.status === 'pending' ? 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-900/50' :
+                                                                    'bg-red-50 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-900/50'
                                                         }
                                                     >
                                                         {u.status === 'approved' ? 'Onaylı' :
@@ -290,7 +290,7 @@ export default function AdminDashboardPage() {
                                                                 u.status === 'rejected' ? 'Reddedildi' : u.status}
                                                     </Badge>
                                                 </td>
-                                                <td className="p-4 text-gray-500">
+                                                <td className="p-4 text-gray-500 dark:text-gray-400">
                                                     {new Date(u.created_at).toLocaleDateString('tr-TR')}
                                                 </td>
                                                 <td className="p-4 text-right">

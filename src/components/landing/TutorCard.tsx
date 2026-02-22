@@ -41,7 +41,7 @@ export function TutorCard({ tutor, rating }: TutorCardProps) {
 
     return (
         <>
-            <Card className="group bg-white border-stone-200/60 hover:border-amber-300/60 hover:shadow-xl hover:shadow-amber-100/40 transition-all duration-500 overflow-hidden cursor-pointer"
+            <Card className="group bg-white dark:bg-stone-950/50 border-stone-200/60 dark:border-stone-800/60 hover:border-amber-300/60 dark:hover:border-amber-900/60 hover:shadow-xl hover:shadow-amber-100/40 dark:hover:shadow-amber-900/20 transition-all duration-500 overflow-hidden cursor-pointer"
                 onClick={() => setDetailOpen(true)}>
                 <CardContent className="p-6">
                     {/* Avatar */}
@@ -54,10 +54,10 @@ export function TutorCard({ tutor, rating }: TutorCardProps) {
                             )}
                         </div>
                         <div className="min-w-0">
-                            <h3 className="font-playfair text-lg font-bold text-stone-900 truncate">
+                            <h3 className="font-playfair text-lg font-bold text-stone-900 dark:text-stone-100 truncate">
                                 {tutor.full_name}
                             </h3>
-                            <p className="text-sm text-amber-700 font-medium">İngilizce Eğitmeni</p>
+                            <p className="text-sm text-amber-700 dark:text-amber-500 font-medium">İngilizce Eğitmeni</p>
                             {rating && rating.count > 0 && (
                                 <div className="flex items-center gap-1 mt-0.5">
                                     {[1, 2, 3, 4, 5].map((s) => (
@@ -70,12 +70,12 @@ export function TutorCard({ tutor, rating }: TutorCardProps) {
                     </div>
 
                     {/* Bio */}
-                    <p className="text-sm text-stone-500 leading-relaxed line-clamp-3 mb-4">
+                    <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed line-clamp-3 mb-4">
                         {tutor.bio || 'Deneyimli İngilizce eğitmeni, hedeflerinize ulaşmanıza yardımcı olmaya hazır.'}
                     </p>
 
                     {/* Detail Info */}
-                    <div className="flex items-center gap-1.5 text-xs text-amber-700 font-medium mb-4 group-hover:text-amber-800 transition-colors">
+                    <div className="flex items-center gap-1.5 text-xs text-amber-700 dark:text-amber-500 font-medium mb-4 group-hover:text-amber-800 dark:group-hover:text-amber-400 transition-colors">
                         <Info className="w-3.5 h-3.5" />
                         <span>Detaylı bilgi için tıklayınız</span>
                     </div>
@@ -84,7 +84,7 @@ export function TutorCard({ tutor, rating }: TutorCardProps) {
                     <Button
                         onClick={(e) => { e.stopPropagation(); handleBook(); }}
                         variant="outline"
-                        className="w-full border-stone-200 hover:bg-gradient-to-r hover:from-amber-600 hover:to-amber-800 hover:text-white hover:border-amber-600 transition-all group/btn shadow-sm"
+                        className="w-full border-stone-200 dark:border-stone-800 dark:text-stone-300 hover:bg-gradient-to-r hover:from-amber-600 hover:to-amber-800 hover:text-white hover:border-amber-600 dark:hover:border-amber-600 transition-all group/btn shadow-sm"
                     >
                         Ders Planla
                         <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -96,15 +96,15 @@ export function TutorCard({ tutor, rating }: TutorCardProps) {
             {detailOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setDetailOpen(false)}>
                     <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-                    <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 fade-in duration-200"
+                    <div className="relative bg-white dark:bg-stone-950 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 fade-in duration-200"
                         onClick={(e) => e.stopPropagation()}>
                         {/* Close button */}
-                        <button onClick={() => setDetailOpen(false)} className="absolute top-4 right-4 p-1.5 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-500 hover:text-stone-700 transition-colors z-10">
+                        <button onClick={() => setDetailOpen(false)} className="absolute top-4 right-4 p-1.5 rounded-full bg-stone-100 dark:bg-stone-900 hover:bg-stone-200 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300 transition-colors z-10">
                             <X className="w-4 h-4" />
                         </button>
 
                         {/* Header with photo */}
-                        <div className="p-6 pb-4 text-center border-b border-stone-100">
+                        <div className="p-6 pb-4 text-center border-b border-stone-100 dark:border-stone-800/60">
                             <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center text-stone-600 text-3xl font-bold overflow-hidden ring-4 ring-amber-100 shadow-lg mb-4">
                                 {tutor.avatar_url ? (
                                     <img src={tutor.avatar_url} alt={tutor.full_name} className="w-full h-full object-cover" />
@@ -112,18 +112,18 @@ export function TutorCard({ tutor, rating }: TutorCardProps) {
                                     initials
                                 )}
                             </div>
-                            <h2 className="font-playfair text-2xl font-bold text-stone-900">{tutor.full_name}</h2>
-                            <p className="text-amber-700 font-medium text-sm mt-1">İngilizce Eğitmeni</p>
+                            <h2 className="font-playfair text-2xl font-bold text-stone-900 dark:text-stone-100">{tutor.full_name}</h2>
+                            <p className="text-amber-700 dark:text-amber-500 font-medium text-sm mt-1">İngilizce Eğitmeni</p>
                         </div>
 
                         {/* Bio Section */}
                         <div className="p-6 space-y-5">
                             <div>
                                 <div className="flex items-center gap-2 mb-2">
-                                    <User className="w-4 h-4 text-stone-400" />
-                                    <h3 className="text-sm font-semibold text-stone-700">Hakkında</h3>
+                                    <User className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+                                    <h3 className="text-sm font-semibold text-stone-700 dark:text-stone-300">Hakkında</h3>
                                 </div>
-                                <p className="text-sm text-stone-600 leading-relaxed">
+                                <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
                                     {tutor.bio || 'Deneyimli İngilizce eğitmeni, hedeflerinize ulaşmanıza yardımcı olmaya hazır.'}
                                 </p>
                             </div>
@@ -132,8 +132,8 @@ export function TutorCard({ tutor, rating }: TutorCardProps) {
                             {tutor.video_intro_url && (
                                 <div>
                                     <div className="flex items-center gap-2 mb-3">
-                                        <Video className="w-4 h-4 text-stone-400" />
-                                        <h3 className="text-sm font-semibold text-stone-700">Tanıtım Videosu</h3>
+                                        <Video className="w-4 h-4 text-stone-400 dark:text-stone-500" />
+                                        <h3 className="text-sm font-semibold text-stone-700 dark:text-stone-300">Tanıtım Videosu</h3>
                                     </div>
                                     <div className="rounded-xl overflow-hidden bg-black aspect-video shadow-inner">
                                         {getEmbedUrl(tutor.video_intro_url)?.includes('youtube.com/embed') ? (
