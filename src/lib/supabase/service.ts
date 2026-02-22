@@ -208,6 +208,20 @@ export async function getBookingsForTutor(tutorId: string) {
     return (data || []) as Booking[];
 }
 
+export async function getActiveBookingsForTutor(tutorId: string, fromDate: string) {
+    const sb = supabase();
+    if (!sb || !isUUID(tutorId)) return [];
+
+    const { data } = await sb
+        .from('bookings')
+        .select('booking_date, start_time')
+        .eq('tutor_id', tutorId)
+        .in('status', ['pending', 'approved'])
+        .gte('booking_date', fromDate);
+
+    return (data || []) as { booking_date: string; start_time: string }[];
+}
+
 export async function getBookingsForStudent(studentId: string) {
     const sb = supabase();
     if (!sb || !isUUID(studentId)) return [];

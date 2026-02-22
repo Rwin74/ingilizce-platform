@@ -45,6 +45,31 @@ export function NotificationBell() {
 
     const unreadCount = notifications.filter((n) => !n.is_read).length;
 
+    const isInitialLoad = useRef(true);
+    const prevUnreadRef = useRef(0);
+
+    useEffect(() => {
+        if (isInitialLoad.current) {
+            isInitialLoad.current = false;
+            prevUnreadRef.current = unreadCount;
+            if (unreadCount > 0) document.title = `(${unreadCount}) LinguaElite`;
+            else document.title = 'LinguaElite';
+            return;
+        }
+
+        if (unreadCount > prevUnreadRef.current) {
+            const audio = new Audio('/notification.mp3');
+            audio.play().catch(console.error);
+        }
+        prevUnreadRef.current = unreadCount;
+
+        if (unreadCount > 0) {
+            document.title = `(${unreadCount}) LinguaElite`;
+        } else {
+            document.title = 'LinguaElite';
+        }
+    }, [unreadCount]);
+
     const handleMarkAllRead = async () => {
         if (!user) return;
         await markAllAsRead(user.id);
@@ -83,7 +108,7 @@ export function NotificationBell() {
             </button>
 
             {open && (
-                <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-xl shadow-xl border border-stone-200/60 z-50 overflow-hidden">
+                <div className="absolute left-0 top-full mt-2 w-80 bg-white rounded-xl shadow-xl border border-stone-200/60 z-50 overflow-hidden">
                     <div className="flex items-center justify-between px-4 py-3 border-b border-stone-100">
                         <h3 className="text-sm font-semibold text-stone-900">Bildirimler</h3>
                         {unreadCount > 0 && (

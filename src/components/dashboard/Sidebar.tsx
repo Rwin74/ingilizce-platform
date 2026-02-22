@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useAppStore } from '@/lib/store';
 import { signOut } from '@/lib/supabase/service';
 import { NotificationBell } from './NotificationBell';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import {
     BookOpen, User, Calendar, ClipboardList, History, Search, CalendarDays, LogOut, Menu, X, MessageSquare, ShieldCheck, GraduationCap, TrendingUp,
 } from 'lucide-react';
@@ -61,7 +62,10 @@ export function Sidebar({ role }: SidebarProps) {
                         <p className="text-[10px] text-stone-400 font-medium tracking-wider uppercase">{roleLabel}</p>
                     </div>
                 </Link>
-                <div className="mt-3"><NotificationBell /></div>
+                <div className="mt-3 flex items-center gap-2">
+                    <ThemeToggle />
+                    <NotificationBell />
+                </div>
             </div>
 
             <nav className="flex-1 px-3 py-4 space-y-1">

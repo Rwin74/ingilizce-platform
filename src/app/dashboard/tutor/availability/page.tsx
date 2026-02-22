@@ -21,6 +21,15 @@ export default function TutorAvailabilityPage() {
     const [saving, setSaving] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragMode, setDragMode] = useState<'add' | 'remove'>('add');
+
+    useEffect(() => {
+        const handleMouseUp = () => setIsDragging(false);
+        window.addEventListener('mouseup', handleMouseUp);
+        return () => window.removeEventListener('mouseup', handleMouseUp);
+    }, []);
+
     useEffect(() => {
         async function load() {
             if (!isDemo && user) {
@@ -80,15 +89,29 @@ export default function TutorAvailabilityPage() {
         );
     }
 
-    const toggleSlot = useCallback((day: number, time: string) => {
+    const handleMouseDown = useCallback((day: number, time: string, isActive: boolean) => {
+        setIsDragging(true);
+        const mode = isActive ? 'remove' : 'add';
+        setDragMode(mode);
         const key = `${day}-${time}`;
         setSelected((prev) => {
             const next = new Set(prev);
-            if (next.has(key)) next.delete(key);
-            else next.add(key);
+            if (mode === 'add') next.add(key);
+            else next.delete(key);
             return next;
         });
     }, []);
+
+    const handleMouseEnter = useCallback((day: number, time: string) => {
+        if (!isDragging) return;
+        const key = `${day}-${time}`;
+        setSelected((prev) => {
+            const next = new Set(prev);
+            if (dragMode === 'add') next.add(key);
+            else next.delete(key);
+            return next;
+        });
+    }, [isDragging, dragMode]);
 
     const handleSave = async () => {
         setSaving(true);
@@ -176,7 +199,7 @@ export default function TutorAvailabilityPage() {
                     <p className="text-sm text-stone-400">Müsait olduğunuz saatlere tıklayın (yeşil = aktif).</p>
                 </CardHeader>
                 <CardContent>
-                    <div className="overflow-x-auto">
+                    <div className="overflow-x-auto select-none">
                         <div className="min-w-[600px]">
                             <div className="grid grid-cols-[60px_repeat(7,1fr)] border-b border-stone-100 mb-1">
                                 <div className="p-2 text-center"><Clock className="w-4 h-4 mx-auto text-stone-400" /></div>
@@ -195,7 +218,10 @@ export default function TutorAvailabilityPage() {
                                         const key = `${day}-${time}`;
                                         const isActive = selected.has(key);
                                         return (
-                                            <button key={key} onClick={() => toggleSlot(day, time)} className={`h-10 m-0.5 rounded-md text-xs font-medium transition-all ${isActive ? 'bg-emerald-500 text-white shadow-sm hover:bg-emerald-600' : 'bg-stone-50 text-stone-300 hover:bg-stone-100 hover:text-stone-500'}`}>
+                                            <button key={key}
+                                                onMouseDown={() => handleMouseDown(day, time, isActive)}
+                                                onMouseEnter={() => handleMouseEnter(day, time)}
+                                                className={`h-10 m-0.5 rounded-md text-xs font-medium transition-all touch-none ${isActive ? 'bg-emerald-500 text-white shadow-sm hover:bg-emerald-600' : 'bg-stone-50 text-stone-300 hover:bg-stone-100 hover:text-stone-500'}`}>
                                                 {isActive ? '✓' : '–'}
                                             </button>
                                         );

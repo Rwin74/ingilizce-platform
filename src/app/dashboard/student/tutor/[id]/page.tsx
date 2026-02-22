@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { getProfile, getAvailability, createBooking, createNotification, getReviewsForTutor, getAverageRating } from '@/lib/supabase/service';
+import { getProfile, getAvailability, createBooking, createNotification, getReviewsForTutor, getAverageRating, getActiveBookingsForTutor } from '@/lib/supabase/service';
 import { triggerEmailNotification } from '@/lib/email-client';
 import { useAppStore } from '@/lib/store';
 import { MOCK_TUTORS, MOCK_AVAILABILITY } from '@/lib/mock-data';
@@ -26,6 +26,7 @@ export default function TutorDetailPage() {
 
     const [tutor, setTutor] = useState<Profile | null>(null);
     const [availability, setAvailability] = useState<AvailType[]>([]);
+    const [bookedSlots, setBookedSlots] = useState<{ date: string; time: string }[]>([]);
     const [loading, setLoading] = useState(true);
 
     const [selectedSlot, setSelectedSlot] = useState<{ day: number; time: string } | null>(null);
@@ -41,14 +42,17 @@ export default function TutorDetailPage() {
             const realTutor = await getProfile(tutorId);
             if (realTutor) {
                 setTutor(realTutor);
-                const avail = await getAvailability(tutorId);
-                setAvailability(avail);
-                const [revs, rating] = await Promise.all([
+                const todayStr = new Date().toISOString().split('T')[0];
+                const [avail, revs, rating, activeBookings] = await Promise.all([
+                    getAvailability(tutorId),
                     getReviewsForTutor(tutorId),
                     getAverageRating(tutorId),
+                    getActiveBookingsForTutor(tutorId, todayStr)
                 ]);
+                setAvailability(avail);
                 setReviews(revs);
                 setAvgRating(rating);
+                setBookedSlots(activeBookings.map(b => ({ date: b.booking_date, time: b.start_time.slice(0, 5) })));
             } else {
                 // Fall back to mock
                 const mock = MOCK_TUTORS.find((t) => t.id === tutorId);
@@ -198,12 +202,15 @@ export default function TutorDetailPage() {
                                         <span className="text-[10px] text-stone-400 font-medium">{time}</span>
                                     </div>
                                     {orderedDays.map((day) => {
+                                        const dateStr = getNextDate(day);
                                         const available = isAvailable(day, time);
+                                        const isBooked = bookedSlots.some(b => b.date === dateStr && b.time === time);
+                                        const canClick = available && !isBooked;
                                         const isSelected = selectedSlot?.day === day && selectedSlot?.time === time;
                                         return (
-                                            <button key={`${day}-${time}`} disabled={!available} onClick={() => { if (available) { setSelectedSlot({ day, time }); setBookingConfirm(true); } }}
-                                                className={`h-10 m-0.5 rounded-md text-xs font-medium transition-all ${isSelected ? 'bg-amber-700 text-white ring-2 ring-amber-700/20' : available ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 cursor-pointer' : 'bg-stone-50 text-stone-300 cursor-not-allowed'}`}>
-                                                {available ? time : '–'}
+                                            <button key={`${day}-${time}`} disabled={!canClick} onClick={() => { if (canClick) { setSelectedSlot({ day, time }); setBookingConfirm(true); } }}
+                                                className={`h-10 m-0.5 rounded-md text-xs font-medium transition-all ${isSelected ? 'bg-amber-700 text-white ring-2 ring-amber-700/20' : isBooked ? 'bg-rose-50 text-rose-400 border border-rose-100 cursor-not-allowed' : available ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 cursor-pointer' : 'bg-stone-50 text-stone-300 cursor-not-allowed'}`}>
+                                                {isBooked ? 'Dolu' : available ? time : '–'}
                                             </button>
                                         );
                                     })}
@@ -213,6 +220,7 @@ export default function TutorDetailPage() {
                     </div>
                     <div className="flex items-center gap-4 mt-4 pt-4 border-t border-stone-100">
                         <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-emerald-100 border border-emerald-200" /><span className="text-xs text-stone-500">Müsait</span></div>
+                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-rose-50 border border-rose-100" /><span className="text-xs text-stone-500">Dolu</span></div>
                         <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-stone-50 border border-stone-200" /><span className="text-xs text-stone-500">Kapalı</span></div>
                     </div>
                 </CardContent>
