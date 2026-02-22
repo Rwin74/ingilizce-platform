@@ -51,15 +51,15 @@ export function Sidebar({ role }: SidebarProps) {
     };
 
     const SidebarContent = () => (
-        <div className="flex flex-col h-full">
-            <div className="px-5 py-6 border-b border-stone-100">
+        <div className="flex flex-col h-full bg-white dark:bg-stone-950">
+            <div className="px-5 py-6 border-b border-stone-100 dark:border-stone-800/60">
                 <Link href="/" className="flex items-center gap-2.5 group">
                     <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center shadow-md">
                         <BookOpen className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                        <span className="font-playfair text-lg font-bold text-stone-900">LinguaElite</span>
-                        <p className="text-[10px] text-stone-400 font-medium tracking-wider uppercase">{roleLabel}</p>
+                        <span className="font-playfair text-lg font-bold text-stone-900 dark:text-stone-100">LinguaElite</span>
+                        <p className="text-[10px] text-stone-400 dark:text-stone-500 font-medium tracking-wider uppercase">{roleLabel}</p>
                     </div>
                 </Link>
                 <div className="mt-3 flex items-center gap-2">
@@ -73,27 +73,27 @@ export function Sidebar({ role }: SidebarProps) {
                     const isActive = pathname === link.href || (link.href === '/dashboard/student' && pathname.startsWith('/dashboard/student/tutor'));
                     return (
                         <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}
-                            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive ? 'bg-gradient-to-r from-amber-50 to-orange-50 text-amber-800 border border-amber-200/60 shadow-sm' : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900'}`}>
-                            <link.icon className={`w-4.5 h-4.5 ${isActive ? 'text-amber-700' : 'text-stone-400'}`} />
+                            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${isActive ? 'bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/40 dark:to-orange-900/40 text-amber-800 dark:text-amber-500 border border-amber-200/60 dark:border-amber-800/60 shadow-sm' : 'text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900/50 hover:text-stone-900 dark:hover:text-stone-200'}`}>
+                            <link.icon className={`w-4.5 h-4.5 ${isActive ? 'text-amber-700 dark:text-amber-500' : 'text-stone-400 dark:text-stone-500'}`} />
                             {link.label}
                         </Link>
                     );
                 })}
             </nav>
 
-            <div className="px-3 pb-4 mt-auto border-t border-stone-100 pt-4">
+            <div className="px-3 pb-4 mt-auto border-t border-stone-100 dark:border-stone-800/60 pt-4">
                 {user && (
                     <div className="flex items-center gap-3 px-3 py-2 mb-2">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center text-stone-600 text-xs font-bold overflow-hidden">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-stone-200 to-stone-300 dark:from-stone-800 dark:to-stone-700 flex items-center justify-center text-stone-600 dark:text-stone-300 text-xs font-bold overflow-hidden">
                             {user.avatar_url ? <img src={user.avatar_url} alt={user.full_name} className="w-full h-full object-cover" /> : (user.full_name?.split(' ').map((n) => n[0]).join('').toUpperCase() || 'U')}
                         </div>
                         <div className="min-w-0">
-                            <p className="text-sm font-medium text-stone-800 truncate">{user.full_name}</p>
-                            <p className="text-xs text-stone-400 capitalize">{role === 'tutor' ? 'Eğitmen' : 'Öğrenci'}</p>
+                            <p className="text-sm font-medium text-stone-800 dark:text-stone-200 truncate">{user.full_name}</p>
+                            <p className="text-xs text-stone-400 dark:text-stone-500 capitalize">{role === 'tutor' ? 'Eğitmen' : 'Öğrenci'}</p>
                         </div>
                     </div>
                 )}
-                <button onClick={handleLogout} className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-colors w-full">
+                <button onClick={handleLogout} className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50 transition-colors w-full">
                     <LogOut className="w-4.5 h-4.5" />Çıkış Yap
                 </button>
             </div>
@@ -102,22 +102,22 @@ export function Sidebar({ role }: SidebarProps) {
 
     return (
         <>
-            <div className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-white/90 backdrop-blur-lg border-b border-stone-200/60 z-50 flex items-center justify-between px-4">
+            <div className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-white/90 dark:bg-stone-950/90 backdrop-blur-lg border-b border-stone-200/60 dark:border-stone-800/60 z-50 flex items-center justify-between px-4">
                 <Link href="/" className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center"><BookOpen className="w-4 h-4 text-white" /></div>
-                    <span className="font-playfair text-base font-bold text-stone-900">LinguaElite</span>
+                    <span className="font-playfair text-base font-bold text-stone-900 dark:text-stone-100">LinguaElite</span>
                 </Link>
-                <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-stone-600">{mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
+                <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-stone-600 dark:text-stone-300">{mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
             </div>
 
             {mobileOpen && (
                 <>
-                    <div className="fixed inset-0 bg-black/20 z-40 lg:hidden" onClick={() => setMobileOpen(false)} />
-                    <div className="fixed top-14 left-0 bottom-0 w-64 bg-white z-50 lg:hidden shadow-xl"><SidebarContent /></div>
+                    <div className="fixed inset-0 bg-black/20 dark:bg-black/60 z-40 lg:hidden" onClick={() => setMobileOpen(false)} />
+                    <div className="fixed top-14 left-0 bottom-0 w-64 bg-white dark:bg-stone-950 z-50 lg:hidden shadow-xl"><SidebarContent /></div>
                 </>
             )}
 
-            <aside className="hidden lg:block fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-stone-200/60 z-40"><SidebarContent /></aside>
+            <aside className="hidden lg:block fixed top-0 left-0 bottom-0 w-64 bg-white dark:bg-stone-950 border-r border-stone-200/60 dark:border-stone-800/60 z-40"><SidebarContent /></aside>
         </>
     );
 }

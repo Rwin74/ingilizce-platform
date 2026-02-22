@@ -145,34 +145,34 @@ export default function TutorDetailPage() {
 
     return (
         <div className="space-y-6">
-            <Link href="/dashboard/student" className="inline-flex items-center gap-1.5 text-sm text-stone-500 hover:text-stone-900 transition-colors">
+            <Link href="/dashboard/student" className="inline-flex items-center gap-1.5 text-sm text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors">
                 <ArrowLeft className="w-4 h-4" />Eğitmenlere Dön
             </Link>
 
-            <Card className="border-stone-200/60">
+            <Card className="border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50">
                 <CardContent className="p-6">
                     <div className="flex flex-col sm:flex-row items-start gap-5">
-                        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center text-stone-600 text-2xl font-semibold shrink-0">
+                        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-stone-200 to-stone-300 dark:from-stone-800 dark:to-stone-700 flex items-center justify-center text-stone-600 dark:text-stone-300 text-2xl font-semibold shrink-0">
                             {tutor.avatar_url ? <img src={tutor.avatar_url} alt={tutor.full_name} className="w-full h-full rounded-2xl object-cover" /> : initials}
                         </div>
                         <div className="flex-1">
-                            <h1 className="font-playfair text-2xl font-bold text-stone-900">{tutor.full_name}</h1>
+                            <h1 className="font-playfair text-2xl font-bold text-stone-900 dark:text-stone-100">{tutor.full_name}</h1>
                             <div className="flex items-center gap-2 mb-3">
-                                <p className="text-amber-700 font-medium text-sm">İngilizce Eğitmeni</p>
+                                <p className="text-amber-700 dark:text-amber-500 font-medium text-sm">İngilizce Eğitmeni</p>
                                 {avgRating.count > 0 && (
-                                    <span className="flex items-center gap-1 text-sm text-stone-600">
+                                    <span className="flex items-center gap-1 text-sm text-stone-600 dark:text-stone-400">
                                         <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-                                        {avgRating.avg.toFixed(1)} <span className="text-stone-400">({avgRating.count})</span>
+                                        {avgRating.avg.toFixed(1)} <span className="text-stone-400 dark:text-stone-500">({avgRating.count})</span>
                                     </span>
                                 )}
                             </div>
-                            <p className="text-stone-500 text-sm leading-relaxed">{tutor.bio || 'Deneyimli İngilizce eğitmeni.'}</p>
+                            <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed">{tutor.bio || 'Deneyimli İngilizce eğitmeni.'}</p>
                             {tutor.video_intro_url && (
-                                <div className="mt-4 p-3 bg-stone-50 rounded-lg border border-stone-100">
-                                    <div className="flex items-center gap-2 text-sm text-stone-600 mb-2">
-                                        <Video className="w-4 h-4 text-stone-400" /><span className="font-medium">Tanıtım Videosu</span>
+                                <div className="mt-4 p-3 bg-stone-50 dark:bg-stone-900/50 rounded-lg border border-stone-100 dark:border-stone-800/60">
+                                    <div className="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-300 mb-2">
+                                        <Video className="w-4 h-4 text-stone-400 dark:text-stone-500" /><span className="font-medium">Tanıtım Videosu</span>
                                     </div>
-                                    <a href={tutor.video_intro_url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline">Videoyu İzle →</a>
+                                    <a href={tutor.video_intro_url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">Videoyu İzle →</a>
                                 </div>
                             )}
                         </div>
@@ -180,26 +180,26 @@ export default function TutorDetailPage() {
                 </CardContent>
             </Card>
 
-            <Card className="border-stone-200/60">
+            <Card className="border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-stone-900"><Calendar className="w-5 h-5 text-stone-400" />Müsait Saatler</CardTitle>
-                    <p className="text-sm text-stone-400">Müsait bir saate tıklayarak ders talep edebilirsiniz.</p>
+                    <CardTitle className="flex items-center gap-2 text-stone-900 dark:text-stone-100"><Calendar className="w-5 h-5 text-stone-400 dark:text-stone-500" />Müsait Saatler</CardTitle>
+                    <p className="text-sm text-stone-400 dark:text-stone-500">Müsait bir saate tıklayarak ders talep edebilirsiniz.</p>
                 </CardHeader>
                 <CardContent>
                     <div className="overflow-x-auto">
                         <div className="min-w-[600px]">
-                            <div className="grid grid-cols-[60px_repeat(7,1fr)] border-b border-stone-100 mb-1">
-                                <div className="p-2 text-center"><Clock className="w-4 h-4 mx-auto text-stone-400" /></div>
+                            <div className="grid grid-cols-[60px_repeat(7,1fr)] border-b border-stone-100 dark:border-stone-800/60 mb-1">
+                                <div className="p-2 text-center"><Clock className="w-4 h-4 mx-auto text-stone-400 dark:text-stone-500" /></div>
                                 {orderedDays.map((day) => (
                                     <div key={day} className="p-2 text-center">
-                                        <span className="text-xs font-semibold text-stone-600 uppercase tracking-wider">{TR_DAY_NAMES[day].slice(0, 3)}</span>
+                                        <span className="text-xs font-semibold text-stone-600 dark:text-stone-400 uppercase tracking-wider">{TR_DAY_NAMES[day].slice(0, 3)}</span>
                                     </div>
                                 ))}
                             </div>
                             {hourSlots.map((time) => (
                                 <div key={time} className="grid grid-cols-[60px_repeat(7,1fr)]">
                                     <div className="p-1.5 text-center flex items-center justify-center">
-                                        <span className="text-[10px] text-stone-400 font-medium">{time}</span>
+                                        <span className="text-[10px] text-stone-400 dark:text-stone-500 font-medium">{time}</span>
                                     </div>
                                     {orderedDays.map((day) => {
                                         const dateStr = getNextDate(day);
@@ -209,7 +209,7 @@ export default function TutorDetailPage() {
                                         const isSelected = selectedSlot?.day === day && selectedSlot?.time === time;
                                         return (
                                             <button key={`${day}-${time}`} disabled={!canClick} onClick={() => { if (canClick) { setSelectedSlot({ day, time }); setBookingConfirm(true); } }}
-                                                className={`h-10 m-0.5 rounded-md text-xs font-medium transition-all ${isSelected ? 'bg-amber-700 text-white ring-2 ring-amber-700/20' : isBooked ? 'bg-rose-50 text-rose-400 border border-rose-100 cursor-not-allowed' : available ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 cursor-pointer' : 'bg-stone-50 text-stone-300 cursor-not-allowed'}`}>
+                                                className={`h-10 m-0.5 rounded-md text-xs font-medium transition-all ${isSelected ? 'bg-amber-700 text-white ring-2 ring-amber-700/20' : isBooked ? 'bg-rose-50 dark:bg-rose-950/30 text-rose-400 border border-rose-100 dark:border-rose-900/50 cursor-not-allowed' : available ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 cursor-pointer' : 'bg-stone-50 dark:bg-stone-900/50 text-stone-300 dark:text-stone-600 cursor-not-allowed'}`}>
                                                 {isBooked ? 'Dolu' : available ? time : '–'}
                                             </button>
                                         );
@@ -218,22 +218,22 @@ export default function TutorDetailPage() {
                             ))}
                         </div>
                     </div>
-                    <div className="flex items-center gap-4 mt-4 pt-4 border-t border-stone-100">
-                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-emerald-100 border border-emerald-200" /><span className="text-xs text-stone-500">Müsait</span></div>
-                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-rose-50 border border-rose-100" /><span className="text-xs text-stone-500">Dolu</span></div>
-                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-stone-50 border border-stone-200" /><span className="text-xs text-stone-500">Kapalı</span></div>
+                    <div className="flex items-center gap-4 mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/60">
+                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-emerald-100 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800/50" /><span className="text-xs text-stone-500 dark:text-stone-400">Müsait</span></div>
+                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-rose-50 dark:bg-rose-950/50 border border-rose-100 dark:border-rose-900/50" /><span className="text-xs text-stone-500 dark:text-stone-400">Dolu</span></div>
+                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800/50" /><span className="text-xs text-stone-500 dark:text-stone-400">Kapalı</span></div>
                     </div>
                 </CardContent>
             </Card>
 
             {/* Reviews Section */}
             {reviews.length > 0 && (
-                <Card className="border-stone-200/60">
+                <Card className="border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50">
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-stone-900">
+                        <CardTitle className="flex items-center gap-2 text-stone-900 dark:text-stone-100">
                             <Star className="w-5 h-5 text-amber-500" />
                             Değerlendirmeler
-                            <span className="text-sm font-normal text-stone-400">({reviews.length})</span>
+                            <span className="text-sm font-normal text-stone-400 dark:text-stone-500">({reviews.length})</span>
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -252,22 +252,22 @@ export default function TutorDetailPage() {
                                 })();
 
                                 return (
-                                    <div key={review.id} className="flex gap-3 p-3 bg-stone-50/80 rounded-xl border border-stone-100">
-                                        <div className="w-9 h-9 rounded-full bg-stone-200 text-stone-600 flex items-center justify-center text-xs font-bold shrink-0">
+                                    <div key={review.id} className="flex gap-3 p-3 bg-stone-50/80 dark:bg-stone-900/50 rounded-xl border border-stone-100 dark:border-stone-800/60">
+                                        <div className="w-9 h-9 rounded-full bg-stone-200 dark:bg-stone-800 text-stone-600 dark:text-stone-300 flex items-center justify-center text-xs font-bold shrink-0">
                                             {studentInitials}
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center justify-between gap-2">
-                                                <span className="text-sm font-semibold text-stone-800">{studentName}</span>
-                                                <span className="text-xs text-stone-400 shrink-0">{timeAgo}</span>
+                                                <span className="text-sm font-semibold text-stone-800 dark:text-stone-200">{studentName}</span>
+                                                <span className="text-xs text-stone-400 dark:text-stone-500 shrink-0">{timeAgo}</span>
                                             </div>
                                             <div className="flex gap-0.5 my-1">
                                                 {[1, 2, 3, 4, 5].map((s) => (
-                                                    <Star key={s} className={`w-3.5 h-3.5 ${s <= review.rating ? 'text-amber-500 fill-amber-500' : 'text-stone-200'}`} />
+                                                    <Star key={s} className={`w-3.5 h-3.5 ${s <= review.rating ? 'text-amber-500 fill-amber-500' : 'text-stone-200 dark:text-stone-700'}`} />
                                                 ))}
                                             </div>
                                             {review.comment && (
-                                                <p className="text-sm text-stone-600 leading-relaxed">{review.comment}</p>
+                                                <p className="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">{review.comment}</p>
                                             )}
                                         </div>
                                     </div>
@@ -281,34 +281,34 @@ export default function TutorDetailPage() {
             <Dialog open={bookingConfirm} onOpenChange={setBookingConfirm}>
                 <DialogContent className="sm:max-w-[400px]">
                     <DialogHeader>
-                        <DialogTitle className="font-playfair text-stone-900">{bookingDone ? 'Talep Gönderildi!' : 'Randevuyu Onayla'}</DialogTitle>
+                        <DialogTitle className="font-playfair text-stone-900 dark:text-stone-100">{bookingDone ? 'Talep Gönderildi!' : 'Randevuyu Onayla'}</DialogTitle>
                     </DialogHeader>
                     {bookingDone ? (
                         <div className="text-center py-6">
                             <CheckCircle2 className="w-16 h-16 mx-auto text-emerald-500 mb-4" />
-                            <p className="text-stone-600">Ders talebiniz <strong>{tutor.full_name}</strong> eğitmenine gönderildi.</p>
-                            <p className="text-sm text-stone-400 mt-2">Eğitmen onayladığında bilgilendirileceksiniz.</p>
+                            <p className="text-stone-600 dark:text-stone-300">Ders talebiniz <strong>{tutor.full_name}</strong> eğitmenine gönderildi.</p>
+                            <p className="text-sm text-stone-400 dark:text-stone-500 mt-2">Eğitmen onayladığında bilgilendirileceksiniz.</p>
                         </div>
                     ) : (
                         <>
                             <div className="space-y-3 py-2">
-                                <div className="flex items-center gap-3 p-3 bg-stone-50 rounded-lg">
-                                    <User className="w-5 h-5 text-stone-400" />
-                                    <div><p className="text-sm font-medium text-stone-800">{tutor.full_name}</p><p className="text-xs text-stone-400">İngilizce Eğitmeni</p></div>
+                                <div className="flex items-center gap-3 p-3 bg-stone-50 dark:bg-stone-900/50 rounded-lg">
+                                    <User className="w-5 h-5 text-stone-400 dark:text-stone-500" />
+                                    <div><p className="text-sm font-medium text-stone-800 dark:text-stone-200">{tutor.full_name}</p><p className="text-xs text-stone-400 dark:text-stone-500">İngilizce Eğitmeni</p></div>
                                 </div>
                                 {selectedSlot && (
-                                    <div className="flex items-center gap-3 p-3 bg-stone-50 rounded-lg">
-                                        <Calendar className="w-5 h-5 text-stone-400" />
+                                    <div className="flex items-center gap-3 p-3 bg-stone-50 dark:bg-stone-900/50 rounded-lg">
+                                        <Calendar className="w-5 h-5 text-stone-400 dark:text-stone-500" />
                                         <div>
-                                            <p className="text-sm font-medium text-stone-800">{TR_DAY_NAMES[selectedSlot.day]}</p>
-                                            <p className="text-xs text-stone-400">{getNextDate(selectedSlot.day)} · {selectedSlot.time} – {(() => { const [h, m] = selectedSlot.time.split(':').map(Number); return `${String(h + 1).padStart(2, '0')}:${String(m).padStart(2, '0')}`; })()}</p>
+                                            <p className="text-sm font-medium text-stone-800 dark:text-stone-200">{TR_DAY_NAMES[selectedSlot.day]}</p>
+                                            <p className="text-xs text-stone-400 dark:text-stone-500">{getNextDate(selectedSlot.day)} · {selectedSlot.time} – {(() => { const [h, m] = selectedSlot.time.split(':').map(Number); return `${String(h + 1).padStart(2, '0')}:${String(m).padStart(2, '0')}`; })()}</p>
                                         </div>
                                     </div>
                                 )}
                             </div>
                             <DialogFooter className="gap-2">
-                                <Button variant="outline" onClick={() => setBookingConfirm(false)}>İptal</Button>
-                                <Button onClick={handleConfirmBooking} disabled={booking} className="bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900">
+                                <Button variant="outline" onClick={() => setBookingConfirm(false)} className="border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300">İptal</Button>
+                                <Button onClick={handleConfirmBooking} disabled={booking} className="bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900 text-white">
                                     {booking ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Gönderiliyor...</> : 'Randevu Talep Et'}
                                 </Button>
                             </DialogFooter>

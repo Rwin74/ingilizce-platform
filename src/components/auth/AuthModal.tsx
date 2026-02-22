@@ -102,26 +102,26 @@ export function AuthModal() {
 
     return (
         <Dialog open={authModalOpen} onOpenChange={(open) => { setAuthModalOpen(open); if (!open) resetForm(); }}>
-            <DialogContent className="sm:max-w-[420px] p-0 gap-0 overflow-hidden border-stone-200">
+            <DialogContent className="sm:max-w-[420px] p-0 gap-0 overflow-hidden border-stone-200 dark:border-stone-800 dark:bg-stone-950">
                 <DialogHeader className="p-6 pb-0">
-                    <DialogTitle className="font-playfair text-xl text-stone-900">
+                    <DialogTitle className="font-playfair text-xl text-stone-900 dark:text-stone-100">
                         {authModalTab === 'login' ? 'Tekrar Hoşgeldin' : 'Aramıza Katıl'}
                     </DialogTitle>
                 </DialogHeader>
 
                 <Tabs value={authModalTab} onValueChange={(v) => { setAuthModalTab(v as 'login' | 'register'); setError(''); }} className="w-full">
                     <div className="px-6 pt-4">
-                        <TabsList className="w-full grid grid-cols-2 bg-stone-100">
-                            <TabsTrigger value="login" className="data-[state=active]:bg-white">Giriş Yap</TabsTrigger>
-                            <TabsTrigger value="register" className="data-[state=active]:bg-white">Kayıt Ol</TabsTrigger>
+                        <TabsList className="w-full grid grid-cols-2 bg-stone-100 dark:bg-stone-900">
+                            <TabsTrigger value="login" className="data-[state=active]:bg-white dark:data-[state=active]:bg-stone-800 dark:data-[state=active]:text-stone-100 dark:text-stone-400">Giriş Yap</TabsTrigger>
+                            <TabsTrigger value="register" className="data-[state=active]:bg-white dark:data-[state=active]:bg-stone-800 dark:data-[state=active]:text-stone-100 dark:text-stone-400">Kayıt Ol</TabsTrigger>
                         </TabsList>
                     </div>
 
                     {/* Error Message */}
                     {error && (
-                        <div className="mx-6 mt-3 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
+                        <div className="mx-6 mt-3 p-3 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-lg flex items-start gap-2">
                             <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
-                            <p className="text-sm text-red-700">{error}</p>
+                            <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
                         </div>
                     )}
 
@@ -129,26 +129,26 @@ export function AuthModal() {
                     <TabsContent value="login" className="p-6 pt-4">
                         <form onSubmit={handleLogin} className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="login-email" className="text-stone-700">E-posta</Label>
-                                <Input id="login-email" type="email" placeholder="isim@ornek.com" value={email} onChange={(e) => setEmail(e.target.value)} className="border-stone-200 focus:border-amber-400" required />
+                                <Label htmlFor="login-email" className="text-stone-700 dark:text-stone-300">E-posta</Label>
+                                <Input id="login-email" type="email" placeholder="isim@ornek.com" value={email} onChange={(e) => setEmail(e.target.value)} className="border-stone-200 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100 focus:border-amber-400" required />
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="login-password" className="text-stone-700">Şifre</Label>
-                                <Input id="login-password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} className="border-stone-200 focus:border-amber-400" required />
+                                <Label htmlFor="login-password" className="text-stone-700 dark:text-stone-300">Şifre</Label>
+                                <Input id="login-password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} className="border-stone-200 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100 focus:border-amber-400" required />
                             </div>
-                            <Button type="submit" className="w-full bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900" disabled={isLoading}>
+                            <Button type="submit" className="w-full bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900 text-white" disabled={isLoading}>
                                 {isLoading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
                             </Button>
                         </form>
 
-                        <div className="mt-5 pt-5 border-t border-stone-100">
-                            <p className="text-xs text-stone-400 text-center mb-3">Hızlı Demo Erişimi</p>
+                        <div className="mt-5 pt-5 border-t border-stone-100 dark:border-stone-800">
+                            <p className="text-xs text-stone-400 dark:text-stone-500 text-center mb-3">Hızlı Demo Erişimi</p>
                             <div className="grid grid-cols-2 gap-2">
-                                <Button variant="outline" size="sm" onClick={() => handleDemoLogin('student')} className="border-stone-200 text-stone-600 hover:bg-stone-50">
+                                <Button variant="outline" size="sm" onClick={() => handleDemoLogin('student')} className="border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900/50">
                                     <Users className="w-3.5 h-3.5 mr-1.5" />
                                     Öğrenci
                                 </Button>
-                                <Button variant="outline" size="sm" onClick={() => handleDemoLogin('tutor')} className="border-stone-200 text-stone-600 hover:bg-stone-50">
+                                <Button variant="outline" size="sm" onClick={() => handleDemoLogin('tutor')} className="border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900/50">
                                     <GraduationCap className="w-3.5 h-3.5 mr-1.5" />
                                     Eğitmen
                                 </Button>
@@ -160,31 +160,31 @@ export function AuthModal() {
                     <TabsContent value="register" className="p-6 pt-4">
                         <form onSubmit={handleRegister} className="space-y-4">
                             <div className="space-y-2">
-                                <Label className="text-stone-700">Ben bir...</Label>
+                                <Label className="text-stone-700 dark:text-stone-300">Ben bir...</Label>
                                 <div className="grid grid-cols-2 gap-2">
-                                    <button type="button" onClick={() => setRegisterRole('student')} className={`p-3 rounded-lg border text-sm font-medium transition-all ${registerRole === 'student' ? 'border-amber-700 bg-gradient-to-r from-amber-600 to-amber-800 text-white' : 'border-stone-200 text-stone-600 hover:bg-stone-50'}`}>
+                                    <button type="button" onClick={() => setRegisterRole('student')} className={`p-3 rounded-lg border text-sm font-medium transition-all ${registerRole === 'student' ? 'border-amber-700 bg-gradient-to-r from-amber-600 to-amber-800 text-white' : 'border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900/50'}`}>
                                         <Users className="w-5 h-5 mx-auto mb-1.5" />
                                         Öğrenci
                                     </button>
-                                    <button type="button" onClick={() => setRegisterRole('tutor')} className={`p-3 rounded-lg border text-sm font-medium transition-all ${registerRole === 'tutor' ? 'border-amber-700 bg-gradient-to-r from-amber-600 to-amber-800 text-white' : 'border-stone-200 text-stone-600 hover:bg-stone-50'}`}>
+                                    <button type="button" onClick={() => setRegisterRole('tutor')} className={`p-3 rounded-lg border text-sm font-medium transition-all ${registerRole === 'tutor' ? 'border-amber-700 bg-gradient-to-r from-amber-600 to-amber-800 text-white' : 'border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-900/50'}`}>
                                         <GraduationCap className="w-5 h-5 mx-auto mb-1.5" />
                                         Eğitmen
                                     </button>
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="reg-name" className="text-stone-700">Ad Soyad</Label>
-                                <Input id="reg-name" placeholder="Ahmet Yılmaz" value={fullName} onChange={(e) => setFullName(e.target.value)} className="border-stone-200 focus:border-amber-400" required />
+                                <Label htmlFor="reg-name" className="text-stone-700 dark:text-stone-300">Ad Soyad</Label>
+                                <Input id="reg-name" placeholder="Ahmet Yılmaz" value={fullName} onChange={(e) => setFullName(e.target.value)} className="border-stone-200 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100 focus:border-amber-400" required />
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="reg-email" className="text-stone-700">E-posta</Label>
-                                <Input id="reg-email" type="email" placeholder="isim@ornek.com" value={email} onChange={(e) => setEmail(e.target.value)} className="border-stone-200 focus:border-amber-400" required />
+                                <Label htmlFor="reg-email" className="text-stone-700 dark:text-stone-300">E-posta</Label>
+                                <Input id="reg-email" type="email" placeholder="isim@ornek.com" value={email} onChange={(e) => setEmail(e.target.value)} className="border-stone-200 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100 focus:border-amber-400" required />
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="reg-password" className="text-stone-700">Şifre</Label>
-                                <Input id="reg-password" type="password" placeholder="En az 6 karakter" value={password} onChange={(e) => setPassword(e.target.value)} className="border-stone-200 focus:border-amber-400" required />
+                                <Label htmlFor="reg-password" className="text-stone-700 dark:text-stone-300">Şifre</Label>
+                                <Input id="reg-password" type="password" placeholder="En az 6 karakter" value={password} onChange={(e) => setPassword(e.target.value)} className="border-stone-200 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100 focus:border-amber-400" required />
                             </div>
-                            <Button type="submit" className="w-full bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900" disabled={isLoading}>
+                            <Button type="submit" className="w-full bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900 text-white" disabled={isLoading}>
                                 {isLoading ? 'Kayıt oluşturuluyor...' : 'Kayıt Ol'}
                             </Button>
                         </form>

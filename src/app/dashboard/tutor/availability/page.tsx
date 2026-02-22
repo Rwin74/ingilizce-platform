@@ -178,11 +178,11 @@ export default function TutorAvailabilityPage() {
         <div className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="font-playfair text-2xl lg:text-3xl font-bold text-stone-900">Müsaitlik Takvimi</h1>
-                    <p className="text-stone-500 mt-1">Ders verebileceğiniz saatleri seçin.</p>
+                    <h1 className="font-playfair text-2xl lg:text-3xl font-bold text-stone-900 dark:text-stone-100">Müsaitlik Takvimi</h1>
+                    <p className="text-stone-500 dark:text-stone-400 mt-1">Ders verebileceğiniz saatleri seçin.</p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setSelected(new Set())} className="border-stone-200 text-stone-600 hover:bg-red-50 hover:text-red-600 hover:border-red-200">
+                    <Button variant="outline" size="sm" onClick={() => setSelected(new Set())} className="border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-400 hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-800">
                         <Trash2 className="w-3.5 h-3.5 mr-1.5" />Temizle
                     </Button>
                     <Button size="sm" onClick={handleSave} disabled={saving} className="bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-700 hover:to-amber-900">
@@ -191,28 +191,28 @@ export default function TutorAvailabilityPage() {
                 </div>
             </div>
 
-            <Card className="border-stone-200/60">
+            <Card className="border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-stone-900">
-                        <Calendar className="w-5 h-5 text-stone-400" />Haftalık Program
+                    <CardTitle className="flex items-center gap-2 text-stone-900 dark:text-stone-100">
+                        <Calendar className="w-5 h-5 text-stone-400 dark:text-stone-500" />Haftalık Program
                     </CardTitle>
-                    <p className="text-sm text-stone-400">Müsait olduğunuz saatlere tıklayın (yeşil = aktif).</p>
+                    <p className="text-sm text-stone-400 dark:text-stone-500">Müsait olduğunuz saatlere tıklayın (yeşil = aktif).</p>
                 </CardHeader>
                 <CardContent>
                     <div className="overflow-x-auto select-none">
                         <div className="min-w-[600px]">
-                            <div className="grid grid-cols-[60px_repeat(7,1fr)] border-b border-stone-100 mb-1">
-                                <div className="p-2 text-center"><Clock className="w-4 h-4 mx-auto text-stone-400" /></div>
+                            <div className="grid grid-cols-[60px_repeat(7,1fr)] border-b border-stone-100 dark:border-stone-800/60 mb-1">
+                                <div className="p-2 text-center"><Clock className="w-4 h-4 mx-auto text-stone-400 dark:text-stone-500" /></div>
                                 {orderedDays.map((day) => (
                                     <div key={day} className="p-2 text-center">
-                                        <span className="text-xs font-semibold text-stone-600 uppercase tracking-wider">{TR_DAY_NAMES[day].slice(0, 3)}</span>
+                                        <span className="text-xs font-semibold text-stone-600 dark:text-stone-400 uppercase tracking-wider">{TR_DAY_NAMES[day].slice(0, 3)}</span>
                                     </div>
                                 ))}
                             </div>
                             {hourSlots.map((time) => (
                                 <div key={time} className="grid grid-cols-[60px_repeat(7,1fr)]">
                                     <div className="p-1.5 text-center flex items-center justify-center">
-                                        <span className="text-[10px] text-stone-400 font-medium">{time}</span>
+                                        <span className="text-[10px] text-stone-400 dark:text-stone-500 font-medium">{time}</span>
                                     </div>
                                     {orderedDays.map((day) => {
                                         const key = `${day}-${time}`;
@@ -221,7 +221,7 @@ export default function TutorAvailabilityPage() {
                                             <button key={key}
                                                 onMouseDown={() => handleMouseDown(day, time, isActive)}
                                                 onMouseEnter={() => handleMouseEnter(day, time)}
-                                                className={`h-10 m-0.5 rounded-md text-xs font-medium transition-all touch-none ${isActive ? 'bg-emerald-500 text-white shadow-sm hover:bg-emerald-600' : 'bg-stone-50 text-stone-300 hover:bg-stone-100 hover:text-stone-500'}`}>
+                                                className={`h-10 m-0.5 rounded-md text-xs font-medium transition-all touch-none ${isActive ? 'bg-emerald-500 dark:bg-emerald-600 text-white shadow-sm hover:bg-emerald-600 dark:hover:bg-emerald-700' : 'bg-stone-50 dark:bg-stone-900/50 text-stone-300 dark:text-stone-600 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-500 dark:hover:text-stone-400'}`}>
                                                 {isActive ? '✓' : '–'}
                                             </button>
                                         );
@@ -230,10 +230,10 @@ export default function TutorAvailabilityPage() {
                             ))}
                         </div>
                     </div>
-                    <div className="flex items-center gap-4 mt-4 pt-4 border-t border-stone-100">
-                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-emerald-500" /><span className="text-xs text-stone-500">Müsait</span></div>
-                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-stone-100 border border-stone-200" /><span className="text-xs text-stone-500">Kapalı</span></div>
-                        <div className="ml-auto text-xs text-stone-400">{selected.size} slot seçili</div>
+                    <div className="flex items-center gap-4 mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/60">
+                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-emerald-500 dark:bg-emerald-600" /><span className="text-xs text-stone-500 dark:text-stone-400">Müsait</span></div>
+                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800" /><span className="text-xs text-stone-500 dark:text-stone-400">Kapalı</span></div>
+                        <div className="ml-auto text-xs text-stone-400 dark:text-stone-500">{selected.size} slot seçili</div>
                     </div>
                 </CardContent>
             </Card>
