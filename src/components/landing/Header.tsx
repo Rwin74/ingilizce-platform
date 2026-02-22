@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/lib/store';
 import { useState } from 'react';
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 export function Header() {
     const { setAuthModalOpen, setAuthModalTab, user } = useAppStore();
@@ -48,13 +49,17 @@ export function Header() {
                             Nasıl Çalışır
                         </a>
                         {user ? (
-                            <Link href={`/dashboard/${user.role}`}>
-                                <Button variant="default" className="bg-amber-700 hover:bg-amber-800">
-                                    Panelim
-                                </Button>
-                            </Link>
+                            <div className="flex items-center gap-3">
+                                <ThemeToggle />
+                                <Link href={`/dashboard/${user.role}`}>
+                                    <Button variant="default" className="bg-amber-700 hover:bg-amber-800 text-white">
+                                        Panelim
+                                    </Button>
+                                </Link>
+                            </div>
                         ) : (
                             <div className="flex items-center gap-3">
+                                <ThemeToggle />
                                 <Button variant="ghost" onClick={handleLogin} className="text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100">
                                     Giriş Yap
                                 </Button>
@@ -66,12 +71,15 @@ export function Header() {
                     </nav>
 
                     {/* Mobile Menu Button */}
-                    <button
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                        className="md:hidden p-2 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100"
-                    >
-                        {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                    </button>
+                    <div className="flex items-center gap-2 md:hidden">
+                        <ThemeToggle />
+                        <button
+                            onClick={() => setMobileOpen(!mobileOpen)}
+                            className="p-2 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100"
+                        >
+                            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                        </button>
+                    </div>
                 </div>
 
                 {/* Mobile Nav */}

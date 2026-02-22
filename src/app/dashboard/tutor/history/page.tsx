@@ -96,47 +96,47 @@ export default function TutorHistoryPage() {
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="font-playfair text-2xl lg:text-3xl font-bold text-stone-900">Ders Geçmişi</h1>
-                <p className="text-stone-500 mt-1">Tamamlanan ve iptal edilen derslerinizin kaydı.</p>
+                <h1 className="font-playfair text-2xl lg:text-3xl font-bold text-stone-900 dark:text-stone-100">Ders Geçmişi</h1>
+                <p className="text-stone-500 dark:text-stone-400 mt-1">Tamamlanan ve iptal edilen derslerinizin kaydı.</p>
             </div>
 
-            <Card className="border-stone-200/60">
+            <Card className="border-stone-200/60 dark:border-stone-800/60 dark:bg-stone-950/50">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-stone-900">
-                        <History className="w-5 h-5 text-stone-400" />Geçmiş Dersler
+                    <CardTitle className="flex items-center gap-2 text-stone-900 dark:text-stone-100">
+                        <History className="w-5 h-5 text-stone-400 dark:text-stone-500" />Geçmiş Dersler
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
                     {bookings.length === 0 ? (
                         <div className="text-center py-10">
-                            <History className="w-12 h-12 mx-auto text-stone-300 mb-3" />
-                            <p className="text-stone-400">Henüz tamamlanmış ders bulunmuyor.</p>
+                            <History className="w-12 h-12 mx-auto text-stone-300 dark:text-stone-700 mb-3" />
+                            <p className="text-stone-400 dark:text-stone-500">Henüz tamamlanmış ders bulunmuyor.</p>
                         </div>
                     ) : (
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm">
                                 <thead>
-                                    <tr className="border-b border-stone-100">
-                                        <th className="text-left py-3 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wider">Öğrenci</th>
-                                        <th className="text-left py-3 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wider">Tarih</th>
-                                        <th className="text-left py-3 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wider">Saat</th>
-                                        <th className="text-left py-3 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wider">Durum</th>
-                                        <th className="text-right py-3 px-3 text-xs font-semibold text-stone-500 uppercase tracking-wider">İşlemler</th>
+                                    <tr className="border-b border-stone-100 dark:border-stone-800/60">
+                                        <th className="text-left py-3 px-3 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Öğrenci</th>
+                                        <th className="text-left py-3 px-3 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Tarih</th>
+                                        <th className="text-left py-3 px-3 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Saat</th>
+                                        <th className="text-left py-3 px-3 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">Durum</th>
+                                        <th className="text-right py-3 px-3 text-xs font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider">İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {bookings.map((booking) => (
-                                        <tr key={booking.id} className="border-b border-stone-50 hover:bg-stone-50/50">
+                                        <tr key={booking.id} className="border-b border-stone-50 dark:border-stone-800/40 hover:bg-stone-50/50 dark:hover:bg-stone-900/30">
                                             <td className="py-3 px-3">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-7 h-7 rounded-full bg-stone-200 text-stone-500 text-[10px] font-bold flex items-center justify-center">{getStudentInitials(booking)}</div>
-                                                    <span className="text-stone-700 font-medium">{getStudentName(booking)}</span>
+                                                    <div className="w-7 h-7 rounded-full bg-stone-200 dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-[10px] font-bold flex items-center justify-center">{getStudentInitials(booking)}</div>
+                                                    <span className="text-stone-700 dark:text-stone-300 font-medium">{getStudentName(booking)}</span>
                                                 </div>
                                             </td>
-                                            <td className="py-3 px-3 text-stone-600">{booking.booking_date}</td>
+                                            <td className="py-3 px-3 text-stone-600 dark:text-stone-400">{booking.booking_date}</td>
                                             <td className="py-3 px-3">
-                                                <div className="flex items-center gap-1 text-stone-600">
-                                                    <Clock className="w-3 h-3 text-stone-400" />{booking.start_time} – {booking.end_time}
+                                                <div className="flex items-center gap-1 text-stone-600 dark:text-stone-300">
+                                                    <Clock className="w-3 h-3 text-stone-400 dark:text-stone-500" />{booking.start_time} – {booking.end_time}
                                                 </div>
                                             </td>
                                             <td className="py-3 px-3"><StatusBadge status={booking.status} /></td>
@@ -146,7 +146,7 @@ export default function TutorHistoryPage() {
                                                         variant="ghost"
                                                         size="sm"
                                                         onClick={() => handleOpenNoteModal(booking)}
-                                                        className="text-amber-600 hover:text-amber-700 hover:bg-amber-50"
+                                                        className="text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/30"
                                                     >
                                                         <FileText className="w-4 h-4 mr-1" />
                                                         Not Ekle/Düzenle

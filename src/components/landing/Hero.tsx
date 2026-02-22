@@ -32,7 +32,7 @@ export function Hero() {
                         </div>
 
                         {/* Headline */}
-                        <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-stone-900 tracking-tight leading-[1.08] mb-6">
+                        <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-stone-900 dark:text-stone-100 tracking-tight leading-[1.08] mb-6">
                             İngilizceni{' '}
                             <span className="relative inline-block">
                                 <span className="relative z-10 bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-transparent">
@@ -47,8 +47,8 @@ export function Hero() {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-lg sm:text-xl text-stone-500 max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
-                            Sertifikalı eğitmenlerle <strong className="text-stone-700">birebir online dersler</strong> al.
+                        <p className="text-lg sm:text-xl text-stone-500 dark:text-stone-400 max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
+                            Sertifikalı eğitmenlerle <strong className="text-stone-700 dark:text-stone-300">birebir online dersler</strong> al.
                             IELTS hazırlık, iş İngilizcesi, konuşma pratiği — hedefine göre özelleştirilmiş programlar.
                         </p>
 
@@ -71,7 +71,7 @@ export function Hero() {
                                 onClick={() => {
                                     document.getElementById('egitmenler')?.scrollIntoView({ behavior: 'smooth' });
                                 }}
-                                className="px-8 py-6 text-base rounded-xl border-stone-300 text-stone-700 hover:bg-stone-50 gap-2"
+                                className="px-8 py-6 text-base rounded-xl border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-900 gap-2"
                             >
                                 <Play className="w-4 h-4" />
                                 Eğitmenleri Gör
@@ -95,7 +95,7 @@ export function Hero() {
                                         </svg>
                                     ))}
                                 </div>
-                                <p className="text-xs text-stone-400 mt-0.5"><strong className="text-stone-600">4.9/5</strong> ortalama puan</p>
+                                <p className="text-xs text-stone-400 dark:text-stone-500 mt-0.5"><strong className="text-stone-600 dark:text-stone-300">4.9/5</strong> ortalama puan</p>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ export function Hero() {
                     <div className="relative flex justify-center lg:justify-end">
                         <div className="relative w-full max-w-md">
                             {/* Main Card */}
-                            <div className="relative bg-white rounded-3xl shadow-2xl shadow-stone-300/30 border border-stone-200/60 p-6 z-10">
+                            <div className="relative bg-white dark:bg-stone-950 rounded-3xl shadow-2xl shadow-stone-300/30 dark:shadow-black/60 border border-stone-200/60 dark:border-stone-800/60 p-6 z-10">
                                 {/* Video Call Preview */}
                                 <div className="bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl h-48 sm:h-56 flex items-center justify-center relative overflow-hidden mb-4">
                                     <div className="absolute inset-0 opacity-10" style={{
@@ -132,42 +132,42 @@ export function Hero() {
                                 </div>
 
                                 {/* Upcoming Lesson Card */}
-                                <div className="bg-amber-50/80 rounded-xl p-4 border border-amber-100">
+                                <div className="bg-amber-50/80 dark:bg-amber-950/30 rounded-xl p-4 border border-amber-100 dark:border-amber-900/50">
                                     <div className="flex items-center justify-between mb-2">
-                                        <span className="text-xs font-semibold text-amber-800 uppercase tracking-wider">Sıradaki Ders</span>
-                                        <span className="text-xs text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full font-medium">Bugün</span>
+                                        <span className="text-xs font-semibold text-amber-800 dark:text-amber-500 uppercase tracking-wider">Sıradaki Ders</span>
+                                        <span className="text-xs text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/50 px-2 py-0.5 rounded-full font-medium">Bugün</span>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-lg bg-amber-200 flex items-center justify-center text-amber-800 font-bold text-sm">JH</div>
+                                        <div className="w-10 h-10 rounded-lg bg-amber-200 dark:bg-amber-900 flex items-center justify-center text-amber-800 dark:text-amber-200 font-bold text-sm">JH</div>
                                         <div>
-                                            <p className="text-sm font-semibold text-stone-800">James Harrington</p>
-                                            <p className="text-xs text-stone-500">14:00 – 15:00 · İş İngilizcesi</p>
+                                            <p className="text-sm font-semibold text-stone-800 dark:text-stone-200">James Harrington</p>
+                                            <p className="text-xs text-stone-500 dark:text-stone-400">14:00 – 15:00 · İş İngilizcesi</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Floating Cards */}
-                            <div className="absolute -top-4 -left-4 bg-white rounded-xl shadow-lg shadow-stone-200/40 border border-stone-100 px-4 py-3 z-20 animate-bounce" style={{ animationDuration: '3s' }}>
+                            <div className="absolute -top-4 -left-4 bg-white dark:bg-stone-900 rounded-xl shadow-lg shadow-stone-200/40 dark:shadow-black/60 border border-stone-100 dark:border-stone-800 px-4 py-3 z-20 animate-bounce" style={{ animationDuration: '3s' }}>
                                 <div className="flex items-center gap-2">
-                                    <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
-                                        <svg className="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center">
+                                        <svg className="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                         </svg>
                                     </div>
                                     <div>
-                                        <p className="text-xs font-semibold text-stone-800">Randevu Onaylandı</p>
-                                        <p className="text-[10px] text-stone-400">2 dakika önce</p>
+                                        <p className="text-xs font-semibold text-stone-800 dark:text-stone-200">Randevu Onaylandı</p>
+                                        <p className="text-[10px] text-stone-400 dark:text-stone-500">2 dakika önce</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="absolute -bottom-3 -right-3 bg-white rounded-xl shadow-lg shadow-stone-200/40 border border-stone-100 px-4 py-3 z-20 animate-bounce" style={{ animationDuration: '4s', animationDelay: '1s' }}>
+                            <div className="absolute -bottom-3 -right-3 bg-white dark:bg-stone-900 rounded-xl shadow-lg shadow-stone-200/40 dark:shadow-black/60 border border-stone-100 dark:border-stone-800 px-4 py-3 z-20 animate-bounce" style={{ animationDuration: '4s', animationDelay: '1s' }}>
                                 <div className="flex items-center gap-2">
-                                    <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-sm">🎓</div>
+                                    <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/80 flex items-center justify-center text-sm">🎓</div>
                                     <div>
-                                        <p className="text-xs font-semibold text-stone-800">1.200+ ders tamamlandı</p>
-                                        <p className="text-[10px] text-stone-400">bu ay</p>
+                                        <p className="text-xs font-semibold text-stone-800 dark:text-stone-200">1.200+ ders tamamlandı</p>
+                                        <p className="text-[10px] text-stone-400 dark:text-stone-500">bu ay</p>
                                     </div>
                                 </div>
                             </div>
